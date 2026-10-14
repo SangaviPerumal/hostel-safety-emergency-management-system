@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostel Safety and Emergency Management System - Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar" id="main-nav">
+    <a href="index.html" class="navbar-brand" id="nav-brand-logo">
+      <span class="siren-icon">🚨</span>
+      <span>Hostel Emergency &amp; Safety</span>
+    </a>
+    <ul class="nav-links" id="nav-menu-links">
+      <li><a href="index.html" id="nav-home">🏠 Home</a></li>
+      <li><a href="emergency.html" class="nav-emergency-btn" id="nav-emergency">🚨 Emergency</a></li>
+      <li><a href="complaint.html" id="nav-complaint">🛡️ Safety Complaint</a></li>
+      <li><a href="student-dashboard.html" id="nav-student-dashboard">👤 Student Dashboard</a></li>
+      <li><a href="login.html" class="active" id="nav-login">🔑 Login</a></li>
+      <li><a href="admin-dashboard.html" id="nav-admin">⚙️ Admin/Warden</a></li>
+    </ul>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+    <div class="form-card" id="login-card">
+      <div class="card-header-center">
+        <h1 class="main-title" id="login-main-title">
+          <span>🛡️</span> Hostel Safety and Emergency Management System
+        </h1>
+        <h2 class="subtitle" id="login-subtitle">Secure Portal Login</h2>
+        <p class="helper-text">Sign in to report emergencies, submit safety complaints, or access authorized warden control room.</p>
+      </div>
+
+      <!-- Role Tabs (Student vs Admin / Warden Login) -->
+      <div class="tab-navigation" style="justify-content: center;">
+        <button type="button" class="tab-btn active" id="tab-btn-student">
+          <span>👤</span> Student Login
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-admin">
+          <span>🛡️</span> Warden Login
+        </button>
+      </div>
+
+      <!-- 1. Student Login Form -->
+      <form id="student-login-form">
+        <div class="form-group">
+          <label for="loginIdentifier" id="lbl-login-id">Student Email ID or Student ID <span class="required">*</span></label>
+          <input type="text" id="loginIdentifier" class="form-control" placeholder="Enter student email (e.g. student@hostel.edu) or ID (STU101)" autocomplete="username" required />
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label for="loginPassword" id="lbl-login-pass" style="margin-bottom: 0;">Password <span class="required">*</span></label>
+            <button type="button" class="link-btn-text" id="btn-forgot-student-pass">Forgot Password?</button>
+          </div>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" class="form-control" placeholder="Enter student password" autocomplete="current-password" required />
+            <button type="button" class="btn-toggle-pass" id="btn-toggle-student-pass" title="Show or hide password" aria-label="Toggle password visibility">
+              <span id="eye-icon-student">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btn-submit-student-login">
+          <span>🔑</span> Sign In as Student
+        </button>
+      </form>
+
+      <!-- 2. Warden Login Form (Restricted Access) -->
+      <form id="admin-login-form" style="display: none;">
+        <div class="form-group">
+          <label for="adminUsername" id="lbl-admin-user">Warden Email or Username <span class="required">*</span></label>
+          <input type="text" id="adminUsername" class="form-control" placeholder="Enter official warden email or username (e.g. warden@hostel.edu)" autocomplete="username" required />
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label for="adminPassword" id="lbl-admin-pass" style="margin-bottom: 0;">Warden Password <span class="required">*</span></label>
+            <button type="button" class="link-btn-text" id="btn-forgot-admin-pass">Forgot Password?</button>
+          </div>
+          <div class="password-wrapper">
+            <input type="password" id="adminPassword" class="form-control" placeholder="Enter warden password" autocomplete="current-password" required />
+            <button type="button" class="btn-toggle-pass" id="btn-toggle-admin-pass" title="Show or hide password" aria-label="Toggle password visibility">
+              <span id="eye-icon-admin">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px; padding: 12px 14px; background: #eff6ff; border-left: 3px solid #1e40af; border-radius: 6px; font-size: 0.82rem; color: #1e3a8a; line-height: 1.5;">
+          <strong>🛡️ Warden-Only Access:</strong> Access to the Warden Control Room is strictly reserved for authorized Hostel Wardens. Student credentials are automatically rejected.
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btn-submit-admin-login" style="background-color: #0f172a;">
+          <span>🛡️</span> Sign In as Warden
+        </button>
+      </form>
+
+      <!-- Student Registration Link (Warden accounts are pre-authorized by administration only) -->
+      <div class="card-footer-links" style="margin-top: 20px;">
+        Resident student without an account? <a href="register.html" id="link-to-register" style="font-weight: 700; color: #1e40af;">Register as Student</a>
+      </div>
+
+      <!-- Development & Sandbox Credentials Reference (Zero personal email exposed) -->
+      <div style="margin-top: 18px; padding: 12px 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.82rem; color: #475569; line-height: 1.6;">
+        <div style="font-weight: 700; color: #1e293b; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+          <span>ℹ️</span> <strong>Development &amp; Sandbox Test Reference:</strong>
+        </div>
+        <div>• <strong>Student Portal (Sandbox):</strong> <code>student@hostel.edu</code> or <code>STU101</code> / Password: <code>password123</code></div>
+        <div>• <strong>Warden Portal (Sandbox):</strong> <code>warden@hostel.edu</code> / Password: <code>password123</code></div>
+        <div style="margin-top: 6px; font-size: 0.77rem; color: #64748b;">
+          In production, default passwords are strictly disabled. Warden accounts are provisioned server-side via environment variables, and new resident students register through the verified portal link above.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Forgot Password Assistance Modal -->
+  <div id="forgot-password-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 style="margin: 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+          <span>🛡️</span> Password Assistance
+        </h3>
+        <button type="button" id="btn-close-forgot-modal" class="btn-close-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <div style="padding: 20px; font-size: 0.9rem; color: #334155; line-height: 1.6;">
+        <p style="margin-bottom: 12px;"><strong>For Resident Students:</strong><br>
+          If you have forgotten your password, please contact the Hostel Administrative Desk with your Student ID or visit the Hostel Office.
+        </p>
+        <div style="padding: 10px 14px; background: #f0fdf4; border-left: 3px solid #16a34a; border-radius: 6px; font-size: 0.85rem; margin-bottom: 16px;">
+          <strong>Hostel Admin Desk:</strong> Room 01, Ground Floor<br>
+          <strong>Email:</strong> admin@hostel.edu | <strong>Phone:</strong> +91 81488 50319
+        </div>
+        <p style="margin-bottom: 12px;"><strong>For Authorized Wardens:</strong><br>
+          Warden credentials are confidential and securely managed by the Chief Warden and Campus Security Directorate.
+        </p>
+        <div style="padding: 10px 14px; background: #eff6ff; border-left: 3px solid #2563eb; border-radius: 6px; font-size: 0.85rem;">
+          <strong>Chief Warden Office (Dr. Sumathi):</strong> +91 73050 04032<br>
+          <strong>Hostel Security Patrol:</strong> 9444400100
+        </div>
+      </div>
+      <div style="padding: 12px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0; text-align: right;">
+        <button type="button" id="btn-dismiss-forgot-modal" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostel Safety and Emergency Management System - Student Registration</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar" id="main-nav">
+    <a href="index.html" class="navbar-brand" id="nav-brand-logo">
+      <span class="siren-icon">🚨</span>
+      <span>Hostel Emergency &amp; Safety</span>
+    </a>
+    <ul class="nav-links" id="nav-menu-links">
+      <li><a href="index.html" id="nav-home">🏠 Home</a></li>
+      <li><a href="emergency.html" class="nav-emergency-btn" id="nav-emergency">🚨 Emergency</a></li>
+      <li><a href="complaint.html" id="nav-complaint">🛡️ Safety Complaint</a></li>
+      <li><a href="student-dashboard.html" id="nav-student-dashboard">👤 Student Dashboard</a></li>
+      <li><a href="login.html" id="nav-login">🔑 Login</a></li>
+      <li><a href="admin-dashboard.html" id="nav-admin">⚙️ Admin/Warden</a></li>
+    </ul>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+    <div class="form-card" id="register-card">
+      <div class="card-header-center">
+        <h1 class="main-title" id="register-main-title">
+          <span>📝</span> Hostel Safety and Emergency Management System
+        </h1>
+        <h2 class="subtitle" id="register-subtitle">Student Registration</h2>
+        <p class="helper-text" id="register-desc">Create your resident student account to report emergencies, lodge safety complaints, and monitor room status.</p>
+      </div>
+
+      <!-- Administrative Notice on Warden Accounts -->
+      <div style="margin-bottom: 20px; padding: 12px 14px; background: #eff6ff; border-left: 3px solid #1e40af; border-radius: 6px; font-size: 0.82rem; color: #1e3a8a; line-height: 1.5;">
+        <strong>🛡️ Administrative Notice:</strong> Warden and authority accounts are strictly provisioned by Campus Administration and cannot be registered publicly. If you are an authorized Warden, please <a href="login.html?role=warden" style="color: #1e40af; font-weight: 700; text-decoration: underline;">log in directly here</a>.
+      </div>
+
+      <!-- Student Registration Form -->
+      <form id="register-form">
+        <!-- Student Name & Student ID -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regStudentName" id="lbl-reg-name">Student Full Name <span class="required">*</span></label>
+            <input type="text" id="regStudentName" class="form-control" placeholder="e.g. Sangavi Perumal" required />
+          </div>
+          <div class="form-group">
+            <label for="regStudentId" id="lbl-reg-id">Student Roll / ID No. <span class="required">*</span></label>
+            <input type="text" id="regStudentId" class="form-control" placeholder="e.g. STU101" required />
+          </div>
+        </div>
+
+        <!-- Email & Phone Number -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regEmail" id="lbl-reg-email">Email Address <span class="required">*</span></label>
+            <input type="email" id="regEmail" class="form-control" placeholder="e.g. student@hostel.edu" required />
+          </div>
+          <div class="form-group">
+            <label for="regPhone" id="lbl-reg-phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="regPhone" class="form-control" placeholder="e.g. +91 98765 43210" required />
+          </div>
+        </div>
+
+        <!-- Hostel Name & Room Number -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regHostelName" id="lbl-reg-hostel">Hostel Name <span class="required">*</span></label>
+            <select id="regHostelName" class="form-control" required>
+              <option value="">-- Select Hostel --</option>
+              <option value="Chellammal hostel">Chellammal hostel</option>
+              <option value="Sivasakthi hostel">Sivasakthi hostel</option>
+              <option value="Flat Office">Flat Office</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="regRoomNumber" id="lbl-reg-room">Room Number <span class="required">*</span></label>
+            <select id="regRoomNumber" class="form-control" required>
+              <option value="">-- Select Room No --</option>
+              <option value="G1">G1</option>
+              <option value="G2">G2</option>
+              <option value="G3">G3</option>
+              <option value="S1">S1</option>
+              <option value="S2">S2</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Password with Visibility Toggle -->
+        <div class="form-group">
+          <label for="regPassword" id="lbl-reg-pass">Create Password <span class="required">*</span></label>
+          <div class="password-wrapper">
+            <input type="password" id="regPassword" class="form-control" placeholder="Create a secure password" minlength="4" required />
+            <button type="button" class="btn-toggle-pass" id="btn-toggle-reg-pass" title="Show or hide password" aria-label="Toggle password visibility">
+              <span id="eye-icon-reg">👁️</span>
+            </button>
+          </div>
+          <small style="color: #64748b; font-size: 0.78rem; display: block; margin-top: 4px;">
+            Password must be at least 4 characters long. Passwords are securely hashed with BCrypt.
+          </small>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" id="btn-submit-register">
+          <span>✅</span> Complete Student Registration
+        </button>
+      </form>
+
+      <div class="card-footer-links" style="margin-top: 20px;">
+        Already registered? <a href="login.html" id="link-to-login" style="font-weight: 700; color: #1e40af;">Sign in as Student</a> | 
+        <a href="login.html?role=warden" style="color: #0f172a; font-weight: 700;">Warden Sign In</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

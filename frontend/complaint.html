@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostel Safety & Emergency Management System - Safety Complaint</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar" id="main-nav">
+    <a href="index.html" class="navbar-brand" id="nav-brand-logo">
+      <span class="siren-icon">🚨</span>
+      <span>Hostel Emergency & Safety</span>
+    </a>
+    <ul class="nav-links" id="nav-menu-links">
+      <li><a href="index.html" id="nav-home">Home</a></li>
+      <li><a href="emergency.html" class="nav-emergency-btn" id="nav-emergency">🚨 Emergency</a></li>
+      <li><a href="complaint.html" class="active" id="nav-complaint">🛡️ Safety Complaint</a></li>
+      <li><a href="student-dashboard.html" id="nav-student-dashboard">👤 Student Dashboard</a></li>
+      <li><a href="login.html" id="nav-login">🔑 Login</a></li>
+      <li><a href="admin-dashboard.html" id="nav-admin">⚙️ Admin/Warden</a></li>
+    </ul>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+    <div class="form-card" id="complaint-card">
+      <div class="card-header-center">
+        <h1 class="main-title" id="complaint-main-title">
+          <span>🛡️</span> Hostel Safety & Emergency Management System
+        </h1>
+        <h2 class="subtitle" id="complaint-subtitle">Submit a Safety Complaint</h2>
+        <p class="helper-text">Report safety hazards, maintenance issues, or infrastructure vulnerabilities to the hostel management.</p>
+      </div>
+
+      <form id="complaint-form">
+        <!-- Student Info Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="studentId" id="lbl-complaint-student-id">Student ID <span class="required">*</span></label>
+            <input type="text" id="studentId" class="form-control" placeholder="e.g. STU101" required />
+          </div>
+          <div class="form-group">
+            <label for="hostelName" id="lbl-complaint-hostel">Hostel Name <span class="required">*</span></label>
+            <select id="hostelName" class="form-control" required>
+              <option value="">-- Select Hostel --</option>
+              <option value="Flat Office">Flat Office</option>
+              <option value="Chellammal hostel">Chellammal hostel</option>
+              <option value="Sivasakthi hostel">Sivasakthi hostel</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="roomNumber" id="lbl-complaint-room">Room Number <span class="required">*</span></label>
+            <select id="roomNumber" class="form-control" required>
+              <option value="">-- Select Room No --</option>
+              <option value="G1">G1</option>
+              <option value="G2">G2</option>
+              <option value="G3">G3</option>
+              <option value="S1">S1</option>
+              <option value="S2">S2</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Complaint Type -->
+        <div class="form-group">
+          <label for="complaintType" id="lbl-complaint-type">Complaint Type <span class="required">*</span></label>
+          <select id="complaintType" class="form-control" required>
+            <option value="">-- Select Complaint Type --</option>
+            <option value="Broken Door Lock / Window Latch">Broken Door Lock / Window Latch</option>
+            <option value="Corridor Light Out / Dark Area">Corridor Light Out / Dark Area</option>
+            <option value="Water Leakage / Plumbing Defect">Water Leakage / Plumbing Defect</option>
+            <option value="Faulty Power Socket / Wiring">Faulty Power Socket / Wiring</option>
+            <option value="CCTV Blindspot / Missing Camera">CCTV Blindspot / Missing Camera</option>
+            <option value="Washroom Hygiene & Sanitation">Washroom Hygiene & Sanitation</option>
+            <option value="Fire Extinguisher Expired / Missing">Fire Extinguisher Expired / Missing</option>
+            <option value="Noise Disturbance / Discipline Issue">Noise Disturbance / Discipline Issue</option>
+            <option value="Other Safety Issue">Other Safety Issue</option>
+          </select>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label for="complaintDescription" id="lbl-complaint-desc">Description <span class="required">*</span></label>
+          <textarea id="complaintDescription" class="form-control" placeholder="Describe the safety or maintenance issue in detail" rows="4" required></textarea>
+        </div>
+
+        <!-- Upload Image (Optional) -->
+        <div class="form-group">
+          <label for="complaintImage" id="lbl-complaint-image">Upload Photo (Optional)</label>
+          <input type="file" id="complaintImage" class="file-upload-input" accept="image/*" />
+        </div>
+
+        <!-- Dynamic Alert Box for Complaints (No mobile numbers in alert text) -->
+        <div class="dynamic-alert-box" id="complaint-alert-box" style="background-color: #eff6ff; border-left-color: #2563eb;">
+          <div class="alert-title" style="color: #1e40af;">
+            <span>📢</span> Alert will be sent to
+          </div>
+          <div class="alert-desc" id="complaint-alert-recipients" style="color: #1e3a8a; font-weight: 600;">
+            Hostel Warden and Hostel Management
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" id="btn-submit-complaint">
+          <span>🛡️</span> Submit Safety Complaint
+        </button>
+      </form>
+
+      <!-- 24/7 Hostel Duty & Maintenance Helpline Numbers -->
+      <div class="emergency-contacts-strip" style="margin-top: 24px;">
+        <div class="emergency-contacts-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <span><span>📞</span> Hostel Management & Maintenance Contacts</span>
+          <span style="font-size: 0.75rem; background: #e0e7ff; color: #3730a3; padding: 2px 8px; border-radius: 9999px;">Direct Lines</span>
+        </div>
+        <div class="contacts-list" style="margin-top: 8px;">
+          <a href="tel:7305004032" class="contact-item" style="text-decoration: none; color: inherit; display: block; border-left-color: #2563eb; background: #f0f7ff;">
+            <strong style="color: #1e40af;">Hostel Warden:</strong>
+            <span style="color: #1d4ed8;">7305004032</span>
+            <small style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 2px;">Dr. Sumathi (Chief Warden)</small>
+          </a>
+          <a href="tel:8148850319" class="contact-item" style="text-decoration: none; color: inherit; display: block; border-left-color: #2563eb; background: #f0f7ff;">
+            <strong style="color: #1e40af;">Hostel Management:</strong>
+            <span style="color: #1d4ed8;">8148850319</span>
+            <small style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 2px;">Admin Desk</small>
+          </a>
+          <a href="tel:1234567890" class="contact-item" style="text-decoration: none; color: inherit; display: block; border-left-color: #0284c7; background: #f0f9ff;">
+            <strong style="color: #0369a1;">Plumber:</strong>
+            <span style="color: #0284c7;">1234567890</span>
+            <small style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 2px;">Plumbing Maintenance</small>
+          </a>
+          <a href="tel:1357924680" class="contact-item" style="text-decoration: none; color: inherit; display: block; border-left-color: #d97706; background: #fffbeb;">
+            <strong style="color: #b45309;">Electrician:</strong>
+            <span style="color: #d97706;">1357924680</span>
+            <small style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 2px;">Electrical Maintenance</small>
+          </a>
+        </div>
+      </div>
+
+      <div class="card-footer-links">
+        Critical Life Safety Hazard? <a href="emergency.html" style="color: #dc2626; font-weight: 700;">Click for Immediate Emergency SOS</a> | 
+        <a href="student-dashboard.html">View Tracked Complaints</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/complaint.js"></script>
+</body>
+</html>

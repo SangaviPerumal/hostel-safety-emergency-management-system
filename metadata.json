@@ -1,0 +1,6 @@
+{
+  "name": "Hostel Safety & Emergency Management System",
+  "description": "A full-stack Hostel Safety & Emergency Management System with pure HTML/CSS/JS frontend and Java Spring Boot + MySQL backend for student registration, instant emergency reporting, safety complaints, and admin/warden dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

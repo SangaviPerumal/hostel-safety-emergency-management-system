@@ -1,0 +1,192 @@
+{
+  "info": {
+    "_postman_id": "hostel-safety-emergency-api",
+    "name": "Hostel Safety & Emergency Management System API",
+    "description": "Complete Postman collection for testing the Spring Boot REST APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Student - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentName\": \"Sangavi Perumal\",\n  \"studentId\": \"STU101\",\n  \"email\": \"sangavi@hostel.edu\",\n  \"phoneNumber\": \"+91 98765 43210\",\n  \"password\": \"password123\",\n  \"hostelName\": \"Emerald Block (Girls Hostel)\",\n  \"roomNumber\": \"B-214\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/students/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "students", "register"]
+        }
+      }
+    },
+    {
+      "name": "2. Student - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"identifier\": \"STU101\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/students/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "students", "login"]
+        }
+      }
+    },
+    {
+      "name": "3. Emergency - Submit SOS",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentName\": \"Sangavi Perumal\",\n  \"studentId\": \"STU101\",\n  \"emergencyCategory\": \"Medical Emergency\",\n  \"emergencyType\": \"Sudden Severe Illness\",\n  \"roomNumber\": \"B-214\",\n  \"description\": \"High fever, shivering and dizziness. Need warden assistance.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/emergencies",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "emergencies"]
+        }
+      }
+    },
+    {
+      "name": "4. Emergency - Get All Emergencies",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/emergencies",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "emergencies"]
+        }
+      }
+    },
+    {
+      "name": "5. Emergency - Update Status",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"In Progress\",\n  \"remarks\": \"Duty medical officer dispatched to Room B-214\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/emergencies/1/status",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "emergencies", "1", "status"]
+        }
+      }
+    },
+    {
+      "name": "6. Complaint - Submit Safety Complaint",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": \"STU101\",\n  \"roomNumber\": \"B-214\",\n  \"complaintType\": \"Broken Door Lock / Window Latch\",\n  \"description\": \"Main room lock latch is not engaging securely.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/complaints",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "complaints"]
+        }
+      }
+    },
+    {
+      "name": "7. Complaint - Get All Complaints",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/complaints",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "complaints"]
+        }
+      }
+    },
+    {
+      "name": "8. Complaint - Update Status",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Resolved\",\n  \"remarks\": \"Lock cylinder replaced by hostel carpenter.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/complaints/1/status",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "complaints", "1", "status"]
+        }
+      }
+    },
+    {
+      "name": "9. Admin - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin@hostel.edu\",\n  \"password\": \"admin123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/admin/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "admin", "login"]
+        }
+      }
+    },
+    {
+      "name": "10. Admin - Get Dashboard Stats",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/dashboard/stats",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "dashboard", "stats"]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostel Emergency & Safety Management System - Report an Emergency</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar" id="main-nav">
+    <a href="index.html" class="navbar-brand" id="nav-brand-logo">
+      <span class="siren-icon">🚨</span>
+      <span>Hostel Emergency & Safety</span>
+    </a>
+    <ul class="nav-links" id="nav-menu-links">
+      <li><a href="index.html" id="nav-home">Home</a></li>
+      <li><a href="emergency.html" class="active nav-emergency-btn" id="nav-emergency">🚨 Emergency</a></li>
+      <li><a href="complaint.html" id="nav-complaint">🛡️ Safety Complaint</a></li>
+      <li><a href="student-dashboard.html" id="nav-student-dashboard">👤 Student Dashboard</a></li>
+      <li><a href="login.html" id="nav-login">🔑 Login</a></li>
+      <li><a href="admin-dashboard.html" id="nav-admin">⚙️ Admin/Warden</a></li>
+    </ul>
+  </header>
+
+  <!-- Main Container Matching User Screenshots -->
+  <main class="main-wrapper">
+    <div class="form-card" id="emergency-card">
+      <div class="card-header-center">
+        <h1 class="main-title" id="emergency-main-title">
+          <span>🚨</span> Hostel Emergency & Safety Management System
+        </h1>
+        <h2 class="subtitle" id="emergency-subtitle">Report an Emergency</h2>
+        <p class="helper-text">Immediate high-priority alert dispatched to hostel wardens and emergency teams.</p>
+      </div>
+
+      <form id="emergency-form">
+        <!-- Student Info Row (Optional/Pre-filled if logged in) -->
+        <div class="form-row" id="student-identity-fields">
+          <div class="form-group">
+            <label for="studentName" id="lbl-student-name">Student Name <span class="required">*</span></label>
+            <input type="text" id="studentName" class="form-control" placeholder="Enter student name" required />
+          </div>
+          <div class="form-group">
+            <label for="studentId" id="lbl-student-id">Student ID <span class="required">*</span></label>
+            <input type="text" id="studentId" class="form-control" placeholder="e.g. STU101" required />
+          </div>
+        </div>
+
+        <!-- Emergency Type (Single clear selector, removing redundant category dropdown) -->
+        <div class="form-group">
+          <label for="emergencyType" id="lbl-emergency-type">Emergency Type <span class="required">*</span></label>
+          <select id="emergencyType" class="form-control" required>
+            <option value="">-- Select Emergency Type --</option>
+            <option value="Medical Emergency">Medical Emergency</option>
+            <option value="Fire Emergency">Fire Emergency</option>
+            <option value="Security Emergency">Security Emergency</option>
+            <option value="Electrical Emergency">Electrical Emergency</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- Hostel Name & Room Number Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="hostelName" id="lbl-hostel-name">Hostel Name <span class="required">*</span></label>
+            <select id="hostelName" class="form-control" required>
+              <option value="">-- Select Hostel --</option>
+              <option value="Flat Office">Flat Office</option>
+              <option value="Chellammal hostel">Chellammal hostel</option>
+              <option value="Sivasakthi hostel">Sivasakthi hostel</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="roomNumber" id="lbl-room-number">Room Number <span class="required">*</span></label>
+            <select id="roomNumber" class="form-control" required>
+              <option value="">-- Select Room No --</option>
+              <option value="G1">G1</option>
+              <option value="G2">G2</option>
+              <option value="G3">G3</option>
+              <option value="S1">S1</option>
+              <option value="S2">S2</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Description (Screenshot match) -->
+        <div class="form-group">
+          <label for="description" id="lbl-description">Description</label>
+          <textarea id="description" class="form-control" placeholder="Describe the emergency" rows="3" required></textarea>
+        </div>
+
+        <!-- Upload Image (Optional) (Screenshot match) -->
+        <div class="form-group">
+          <label for="imageUpload" id="lbl-image-upload">Upload Image (Optional)</label>
+          <input type="file" id="imageUpload" class="file-upload-input" accept="image/*" />
+        </div>
+
+        <!-- Dynamic Alert Box (Screenshot match - No mobile numbers displayed inside alert) -->
+        <div class="dynamic-alert-box" id="dynamic-alert-box">
+          <div class="alert-title" id="alert-box-title">
+            <span>📢</span> Alert will be sent to
+          </div>
+          <div class="alert-desc" id="alert-recipient-text">
+            Please select an emergency category.
+          </div>
+        </div>
+
+        <!-- Bright Red Emergency Button (Screenshot match) -->
+        <button type="submit" class="btn btn-emergency" id="btn-submit-emergency">
+          <span>🚨</span> SEND EMERGENCY ALERT
+        </button>
+      </form>
+
+      <!-- 24/7 Direct Emergency Numbers Quick-Dial -->
+      <div class="emergency-contacts-strip" style="margin-top: 24px;">
+        <div class="emergency-contacts-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <span><span>📞</span> Direct Emergency & Duty Numbers (Click to Call)</span>
+          <span style="font-size: 0.75rem; background: #fee2e2; color: #b91c1c; padding: 2px 8px; border-radius: 9999px;">24/7 Active</span>
+        </div>
+        <div class="contacts-list" style="margin-top: 8px;">
+          <a href="tel:7305004032" class="contact-item" style="text-decoration: none; color: inherit; display: block;">
+            <strong>Warden Hotline:</strong>
+            <span>7305004032</span>
+            <small style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 2px;">Dr. Sumathi (Chief Warden)</small>
+          </a>
+          <a href="tel:8148850319" class="contact-item" style="text-decoration: none; color: inherit; display: block;">
+            <strong>Hostel Management:</strong>
+            <span>8148850319</span>
+            <small style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 2px;">Admin & Response Cell</small>
+          </a>
+          <a href="tel:1357924680" class="contact-item" style="text-decoration: none; color: inherit; display: block;">
+            <strong>Electrician:</strong>
+            <span>1357924680</span>
+            <small style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 2px;">Emergency Electrical Duty</small>
+          </a>
+          <a href="tel:1234567890" class="contact-item" style="text-decoration: none; color: inherit; display: block;">
+            <strong>Plumber:</strong>
+            <span>1234567890</span>
+            <small style="display: block; font-size: 0.75rem; color: #64748b; margin-top: 2px;">Water & Pipe Maintenance</small>
+          </a>
+        </div>
+        
+        <!-- Extended Emergency Teams list -->
+        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px dashed #fca5a5; font-size: 0.82rem; color: #475569; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;">
+          <span>👨‍⚕️ <strong>Doctor & Nurse:</strong> Campus Health Dispatch (108)</span>
+          <span>🚒 <strong>Fire Emergency Team:</strong> Emergency Station (101)</span>
+          <span>🛡️ <strong>Hostel Security & Bouncers:</strong> Gate Patrol (+91 94444 00100)</span>
+        </div>
+      </div>
+
+      <div class="card-footer-links">
+        Need non-emergency maintenance? <a href="complaint.html" id="link-to-complaint">Submit Safety Complaint</a> | 
+        <a href="student-dashboard.html" id="link-to-status">Check Emergency Status</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/emergency.js"></script>
+</body>
+</html>

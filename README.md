@@ -100,17 +100,20 @@ The existing HTML, CSS, and JavaScript pages in `frontend/` are included in the 
 
 The frontend uses `/api` and the Spring Boot server exposes the student, warden, emergency, complaint, and dashboard endpoints. Demo warden credentials, when the database is first initialized, are `admin@hostel.edu` / `admin123`; demo student credentials are `STU101` / `password123` and `STU102` / `password123`.
 
-## Deploying a Demo with Railway
+## Deploying a Demo with Render
 
-The root `Dockerfile` builds the Spring Boot application and packages the existing `frontend/` pages. Railway can run this container alongside a Railway MySQL service.
+The root `Dockerfile` builds the Spring Boot application and packages the existing `frontend/` pages. Render can build and run this Docker web service. Since this application uses MySQL, pair it with a MySQL-compatible cloud database such as TiDB Cloud Starter; Render's managed relational database is PostgreSQL and cannot be used by this MySQL JDBC application without a database migration.
 
-1. Push the latest project files, including the root `Dockerfile`, `.dockerignore`, the backend production configuration, and the `frontend/` and `backend/` changes, to the GitHub repository connected to Railway. Do not upload `.env` files or passwords.
-2. In Railway, create a project from that GitHub repository and add a MySQL service.
-3. In the application service, set `SPRING_PROFILES_ACTIVE=production` and add references to the MySQL service variables `MYSQLHOST`, `MYSQLPORT`, `MYSQLDATABASE`, `MYSQLUSER`, and `MYSQLPASSWORD`. The production profile reads these values from the environment.
-4. Set `HOSTEL_ADMIN_USERNAME`, `HOSTEL_ADMIN_PASSWORD` (choose a new, unique password), and optionally `HOSTEL_ADMIN_NAME` in the application service variables. Do not use the local demo password on a public deployment.
-5. Generate a public domain for the application service and open that URL. Railway may require a paid plan or usage charges; review its current pricing before deploying.
+1. Push the latest project files, including the root `Dockerfile`, `.dockerignore`, production configuration, and frontend/backend changes, to the GitHub repository. Never upload `.env` files or local-only database configuration.
+2. Create a MySQL-compatible TiDB Cloud Starter cluster. Use TiDB's **Connect** instructions to obtain the endpoint/host, port, database name, username, and password. Allow the Render service to reach the database using the provider's network-access controls, and keep TLS verification enabled.
+3. In Render, create **New > Web Service**, connect the GitHub repository, select the `main` branch, and choose the **Docker** runtime. Keep the repository root as the Docker build context (the Dockerfile is at the repository root).
+4. In the Render service's **Environment** settings, add:
+   - `SPRING_PROFILES_ACTIVE` = `production`
+   - `MYSQLHOST`, `MYSQLPORT`, `MYSQLDATABASE`, `MYSQLUSER`, and `MYSQLPASSWORD` = the corresponding TiDB connection values
+   - `HOSTEL_ADMIN_USERNAME`, `HOSTEL_ADMIN_PASSWORD` (choose a new, unique password), and optionally `HOSTEL_ADMIN_NAME`
+5. Save and deploy. Once the service is live, use its `onrender.com` URL. Render free web services may spin down when idle and take time to wake; review current Render and TiDB plans, quotas, and pricing before deploying.
 
-The production profile does not seed demo student/emergency/complaint records. Use synthetic test data only: this project is a student demo and its API is not hardened for real student personal or emergency data. A public URL is accessible on the internet.
+The production profile verifies the database TLS connection and does not seed demo student/emergency/complaint records. Use synthetic test data only: this project is a student demo and its API is not hardened for real student personal or emergency data. A public URL is accessible on the internet.
 
 ---
 

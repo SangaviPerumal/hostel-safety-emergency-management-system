@@ -1,147 +1,79 @@
-# 🚨 Hostel Safety & Emergency Management System
+# Hostel Safety and Emergency Management System
 
-A full-stack Web Application designed for university and college hostels to manage immediate crisis SOS alerts, resident safety complaints, and warden control room dispatch operations.
+## 🌐 Live Demo
 
----
+**Project Link:** https://hostel-safety-emergency-management-system.onrender.com/
 
-## 🏗️ Architecture & Technologies
+## 📌 Project Overview
 
-- **Frontend**: Pure HTML5, CSS3 (Responsive Design), Vanilla JavaScript (ES6+ `fetch()` API)
-  *(Pure web standard interface with zero bundle overhead, interactive modals, and real-time alerts)*
-- **Backend**: Node.js, Express, TypeScript, BCrypt password hashing, Crypto secure sessions
-- **Database**: MySQL 8.x / MariaDB (Relational schema with InnoDB, indexing, and connection pooling via `mysql2/promise`)
-- **Build & Bundle**: Vite + esbuild (`npm run build` compiles frontend assets and bundles server to `dist/server.cjs`)
-- **API Standard**: Secure JSON RESTful APIs with strict Role-Based Access Control (RBAC)
+The Hostel Safety and Emergency Management System is a web-based application designed to improve student safety and simplify emergency and complaint reporting in college hostels.
 
----
+The system provides a platform for students to report emergencies and hostel-related complaints. Wardens can access the dashboard to monitor submitted reports and manage their status.
 
-## 📂 Project Structure
+## 🎯 Objectives
 
-```text
-hostel-safety-management/
-│
-├── frontend/
-│   ├── index.html               # Main Home & Emergency Portal
-│   ├── emergency.html           # Emergency SOS Reporting Form
-│   ├── complaint.html           # Safety Complaint Form
-│   ├── login.html               # Student & Warden Login (Role-based)
-│   ├── register.html            # Student Registration Page
-│   ├── student-dashboard.html   # Student Dashboard (Status Tracking)
-│   ├── admin-dashboard.html     # Warden Control Room (Metrics, Filters, Status Updates)
-│   ├── css/
-│   │   └── style.css            # Clean, modern college responsive CSS
-│   └── js/
-│       ├── api.js               # Central API configuration & session manager
-│       ├── emergency.js         # Emergency dynamic alert box & REST submit
-│       ├── complaint.js         # Safety complaint submission handler
-│       ├── login.js             # Student and Warden authentication handler
-│       ├── register.js          # Student registration handler
-│       ├── student-dashboard.js # Emergency status table & metrics loader
-│       └── admin.js             # Admin metrics, status updater & student directory
-│
-├── src/
-│   └── db.ts                    # MySQL connection pool, schema verification & seed logic
-├── server.ts                    # Full-Stack Express REST API & static server
-├── schema.sql                   # MySQL relational schema (5 tables)
-├── package.json                 # Scripts: dev, build, start, lint
-├── .env.example                 # Environment variables specification
-└── postman_collection.json      # Ready-to-import Postman API test collection
-```
+- To provide a simple platform for reporting hostel emergencies.
+- To help students submit hostel-related complaints.
+- To enable wardens to monitor and manage reports.
+- To organize emergency and complaint information in one system.
+- To improve communication and support faster responses to reported incidents.
 
----
+## ✨ Key Features
 
-## 🚀 Commands & Production Workflow
+- **User Authentication:** Login functionality for authorized users.
+- **Emergency Reporting:** Submit emergency reports with relevant details.
+- **Multiple Emergency Categories:** Categorize incidents such as medical, fire, security, electrical, and other emergencies, as supported by the application.
+- **Complaint Management:** Submit and manage hostel-related complaints.
+- **Warden Dashboard:** View submitted reports and monitor their status.
+- **Status Management:** Update emergency and complaint statuses according to user permissions.
 
-### 1. Development Mode
-```bash
-npm run dev
-# Starts backend server on port 3000 with tsx execution
-```
+## 👥 User Roles
 
-### 2. Production Build
-```bash
-npm run build
-# 1. Compiles frontend assets via Vite to dist/
-# 2. Bundles server.ts via esbuild to dist/server.cjs
-```
+### Student
+- Log in to the application.
+- Submit emergency reports.
+- Register hostel-related complaints.
+- View relevant information available through the application.
 
-### 3. Production Start
-```bash
-npm start
-# Runs compiled bundle: node dist/server.cjs
-```
+### Warden / Administrator
+- Log in with authorized credentials.
+- View emergency reports and complaints.
+- Manage report statuses.
+- Monitor information displayed on the dashboard.
 
----
+## 🛠️ Technologies Used
 
-## 🗄️ MySQL Database Setup Instructions
+- **Frontend:** Web technologies used in the project interface
+- **Backend:** Java, Spring Boot
+- **Database:** MySQL
+- **Development Tools:** Visual Studio Code, Git, and GitHub
+- **Deployment:** Render
 
-1. Run the database migration script:
-   ```bash
-   mysql -u root -p < schema.sql
-   ```
-2. Or create the database and let the server auto-verify tables on startup:
-   ```sql
-   CREATE DATABASE IF NOT EXISTS hostel_safety_db;
-   ```
-3. Set your connection variables in `.env` (see `.env.example`).
+## ⚙️ System Workflow
 
----
+1. The user opens the web application.
+2. The user logs in using the appropriate credentials.
+3. A student submits an emergency report or complaint.
+4. The submitted information is stored in the database.
+5. The warden or administrator reviews the submitted information.
+6. The report status can be updated according to the available permissions.
 
-## Connecting the Frontend to the Spring Boot Backend
+## 🚀 Live Application
 
-The existing HTML, CSS, and JavaScript pages in `frontend/` are included in the Spring Boot application when Maven builds the backend. This keeps the current frontend and its design unchanged, while serving its pages and `/api` requests from the same origin.
+Visit the deployed application:
 
-1. Start MySQL. Set `SPRING_DATASOURCE_PASSWORD` in your environment, or keep your local-only password in `backend/application-local.properties` (this file is ignored by Git).
-2. From the `backend` directory, run:
-   ```bash
-   mvn spring-boot:run
-   ```
-3. Open **http://localhost:8080/** (or **http://localhost:8080/login.html**) in your browser. Do not use VS Code Live Server for this integrated setup; opening the frontend from a separate server makes the relative `/api` URL point at the wrong server.
+https://hostel-safety-emergency-management-system.onrender.com/
 
-The frontend uses `/api` and the Spring Boot server exposes the student, warden, emergency, complaint, and dashboard endpoints. Demo warden credentials, when the database is first initialized, are `admin@hostel.edu` / `admin123`; demo student credentials are `STU101` / `password123` and `STU102` / `password123`.
+## 🔮 Future Enhancements
 
-## Deploying a Demo with Render
+- Real-time notifications for emergency reports.
+- Emergency contact integration.
+- Improved report tracking and history.
+- Additional reporting and analytics features.
+- Enhanced authentication and security.
 
-The root `Dockerfile` builds the Spring Boot application and packages the existing `frontend/` pages. Render can build and run this Docker web service. Since this application uses MySQL, pair it with a MySQL-compatible cloud database such as TiDB Cloud Starter; Render's managed relational database is PostgreSQL and cannot be used by this MySQL JDBC application without a database migration.
+## 👩‍💻 Project Purpose
 
-1. Push the latest project files, including the root `Dockerfile`, `.dockerignore`, production configuration, and frontend/backend changes, to the GitHub repository. Never upload `.env` files or local-only database configuration.
-2. Create a MySQL-compatible TiDB Cloud Starter cluster. Use TiDB's **Connect** instructions to obtain the endpoint/host, port, database name, username, and password. Allow the Render service to reach the database using the provider's network-access controls, and keep TLS verification enabled.
-3. In Render, create **New > Web Service**, connect the GitHub repository, select the `main` branch, and choose the **Docker** runtime. Keep the repository root as the Docker build context (the Dockerfile is at the repository root).
-4. In the Render service's **Environment** settings, add:
-   - `SPRING_PROFILES_ACTIVE` = `production`
-   - `MYSQLHOST`, `MYSQLPORT`, `MYSQLDATABASE`, `MYSQLUSER`, and `MYSQLPASSWORD` = the corresponding TiDB connection values
-   - `HOSTEL_ADMIN_USERNAME`, `HOSTEL_ADMIN_PASSWORD` (choose a new, unique password), and optionally `HOSTEL_ADMIN_NAME`
-5. Save and deploy. Once the service is live, use its `onrender.com` URL. Render free web services may spin down when idle and take time to wake; review current Render and TiDB plans, quotas, and pricing before deploying.
+This project demonstrates how a web-based application can support hostel safety, emergency reporting, and complaint management through a centralized digital platform.
 
-The production profile verifies the database TLS connection and does not seed demo student/emergency/complaint records. Use synthetic test data only: this project is a student demo and its API is not hardened for real student personal or emergency data. A public URL is accessible on the internet.
-
----
-
-## 🧪 Step 6: Testing REST APIs with Postman
-
-Import the included `postman_collection.json` file directly into Postman:
-
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `POST` | `/api/students/register` | Register new resident student |
-| `POST` | `/api/students/login` | Validate student login |
-| `POST` | `/api/emergencies` | Report emergency (Sets initial status to `Pending`) |
-| `GET` | `/api/emergencies` | Retrieve all emergencies |
-| `GET` | `/api/emergencies/{id}` | Get emergency by ID |
-| `PUT` | `/api/emergencies/{id}/status` | Admin updates status (`Pending` ➔ `In Progress` ➔ `Resolved`) |
-| `POST` | `/api/complaints` | Submit safety maintenance complaint |
-| `GET` | `/api/complaints` | Retrieve all safety complaints |
-| `PUT` | `/api/complaints/{id}/status` | Update complaint status |
-| `POST` | `/api/admin/login` | Warden / Admin authentication |
-| `GET` | `/api/dashboard/stats` | Retrieve aggregated dashboard counts |
-
----
-
-## 🛡️ Default Demo Credentials
-
-- **Resident Student**:
-  - Student ID: `STU101`
-  - Password: `password123`
-- **Warden / Admin**:
-  - Username: `admin@hostel.edu`
-  - Password: `admin123`
+**Note:** The application supports emergency reporting and coordination. In an actual emergency, users should also contact the appropriate emergency services or hostel authorities directly.

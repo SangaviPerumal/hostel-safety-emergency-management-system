@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostel Safety & Emergency Management System - Warden Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .status-select {
+      padding: 4px 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar" id="main-nav">
+    <a href="index.html" class="navbar-brand" id="nav-brand-logo">
+      <span class="siren-icon">🚨</span>
+      <span>Hostel Emergency & Safety (Admin Portal)</span>
+    </a>
+    <ul class="nav-links" id="nav-menu-links">
+      <li><a href="index.html" id="nav-home">Home</a></li>
+      <li><a href="emergency.html" class="nav-emergency-btn" id="nav-emergency">🚨 Emergency</a></li>
+      <li><a href="complaint.html" id="nav-complaint">🛡️ Safety Complaint</a></li>
+      <li><a href="student-dashboard.html" id="nav-student-dashboard">👤 Student Dashboard</a></li>
+      <li><a href="admin-dashboard.html" class="active" id="nav-admin">⚙️ Admin/Warden</a></li>
+      <li><button id="btn-admin-logout" class="btn btn-secondary btn-sm" style="display:inline-flex;">Logout</button></li>
+    </ul>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+    <div class="form-card form-card-wide" id="admin-dash-card">
+      
+      <!-- Admin Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 24px;">
+        <div>
+          <h1 style="color: #0f172a; font-size: 1.55rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+            <span>🛡️</span> Warden & Emergency Management Control Room
+          </h1>
+          <p style="color: #4b5563; font-size: 0.95rem; margin-top: 4px;">
+            Logged in as: <strong id="admin-display-name">Chief Warden / Security Cell</strong> | Campus Operations
+          </p>
+        </div>
+        
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button id="btn-seed-sample" class="btn btn-secondary btn-sm">
+            <span>⚡</span> Load Demo Alerts
+          </button>
+          <button id="btn-refresh-admin" class="btn btn-primary btn-sm">
+            <span>🔄</span> Refresh Live Feed
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Broadcast Alert Notification -->
+      <div id="admin-critical-alert" style="display: none; margin-bottom: 20px;">
+        <!-- Injected if pending emergencies exist -->
+      </div>
+
+      <!-- Feature 7: Admin Dashboard Metric Cards (With inprogress counts for Requirement 8) -->
+      <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+        <div class="metric-card blue">
+          <div class="metric-label">Total Students</div>
+          <div class="metric-value" id="stat-total-students">0</div>
+        </div>
+        <div class="metric-card red">
+          <div class="metric-label">Total Emergencies</div>
+          <div class="metric-value" id="stat-total-emergencies">0</div>
+        </div>
+        <div class="metric-card orange">
+          <div class="metric-label">Pending Emergencies</div>
+          <div class="metric-value" id="stat-pending-emergencies">0</div>
+        </div>
+        <div class="metric-card orange" style="border-left-color: #f59e0b;">
+          <div class="metric-label">In Progress Emergencies</div>
+          <div class="metric-value" id="stat-inprogress-emergencies">0</div>
+        </div>
+        <div class="metric-card green">
+          <div class="metric-label">Resolved Emergencies</div>
+          <div class="metric-value" id="stat-resolved-emergencies">0</div>
+        </div>
+        <div class="metric-card blue">
+          <div class="metric-label">Total Complaints</div>
+          <div class="metric-value" id="stat-total-complaints">0</div>
+        </div>
+        <div class="metric-card orange">
+          <div class="metric-label">Pending Complaints</div>
+          <div class="metric-value" id="stat-pending-complaints">0</div>
+        </div>
+        <div class="metric-card orange" style="border-left-color: #f59e0b;">
+          <div class="metric-label">In Progress Complaints</div>
+          <div class="metric-value" id="stat-inprogress-complaints">0</div>
+        </div>
+        <div class="metric-card green">
+          <div class="metric-label">Resolved Complaints</div>
+          <div class="metric-value" id="stat-resolved-complaints">0</div>
+        </div>
+      </div>
+
+      <!-- Admin Tab Navigation -->
+      <div class="tab-navigation">
+        <button type="button" class="tab-btn active" id="tab-admin-emergencies">
+          <span>🚨</span> Emergency Reports (<span id="badge-emergencies-count">0</span>)
+        </button>
+        <button type="button" class="tab-btn" id="tab-admin-complaints">
+          <span>🛡️</span> Safety Complaints (<span id="badge-complaints-count">0</span>)
+        </button>
+        <button type="button" class="tab-btn" id="tab-admin-students">
+          <span>👥</span> Registered Students (<span id="badge-students-count">0</span>)
+        </button>
+      </div>
+
+      <!-- TAB 1: Emergency Reports Table (Shows Hostel Name of each student) -->
+      <div id="admin-section-emergencies">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+          <h3 style="color: #1e293b; font-size: 1.15rem; font-weight: 700;">Hostel Emergency Alerts</h3>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <select id="filter-emergency-category" class="form-control" style="width: auto; padding: 6px 12px; font-size: 0.85rem;">
+              <option value="ALL">All Categories</option>
+              <option value="Medical">Medical Emergency</option>
+              <option value="Fire">Fire Emergency</option>
+              <option value="Security">Security Emergency</option>
+              <option value="Electrical">Electrical Emergency</option>
+              <option value="Other">Other Emergency</option>
+            </select>
+            <select id="filter-emergency-status" class="form-control" style="width: auto; padding: 6px 12px; font-size: 0.85rem;">
+              <option value="ALL">All Statuses</option>
+              <option value="Pending">Pending Only</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="admin-emergencies-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Student</th>
+                <th>Hostel Name</th>
+                <th>Room</th>
+                <th>Emergency Type</th>
+                <th>Description</th>
+                <th>Alert Sent To</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Update Status</th>
+              </tr>
+            </thead>
+            <tbody id="admin-emergencies-body">
+              <tr>
+                <td colspan="10" style="text-align: center; color: #64748b; padding: 24px;">Loading emergencies...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: Safety Complaints Table (Shows Hostel Name of each student) -->
+      <div id="admin-section-complaints" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+          <h3 style="color: #1e293b; font-size: 1.15rem; font-weight: 700;">Hostel Safety & Maintenance Complaints</h3>
+          <div style="display: flex; gap: 8px;">
+            <select id="filter-complaint-status" class="form-control" style="width: auto; padding: 6px 12px; font-size: 0.85rem;">
+              <option value="ALL">All Complaints</option>
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="admin-complaints-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Student ID</th>
+                <th>Hostel Name</th>
+                <th>Room</th>
+                <th>Complaint Type</th>
+                <th>Description</th>
+                <th>Alert Sent To</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Update Status</th>
+              </tr>
+            </thead>
+            <tbody id="admin-complaints-body">
+              <tr>
+                <td colspan="10" style="text-align: center; color: #64748b; padding: 24px;">Loading complaints...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: Registered Students Directory (Feature 6: View All Students) -->
+      <div id="admin-section-students" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <h3 style="color: #1e293b; font-size: 1.15rem; font-weight: 700;">Hostel Resident Student Directory</h3>
+          <span style="font-size: 0.85rem; color: #64748b;">Source: MySQL `students` table</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="admin-students-table">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Hostel Name</th>
+                <th>Room No</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody id="admin-students-body">
+              <tr>
+                <td colspan="6" style="text-align: center; color: #64748b; padding: 24px;">Loading students directory...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Key Duty & Emergency Contacts Roster for Admin Control -->
+      <div class="emergency-contacts-strip" style="margin-top: 32px;">
+        <div class="emergency-contacts-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <span><span>📞</span> Hostel Key Duty & Emergency Response Roster</span>
+          <span style="font-size: 0.8rem; background: #e0e7ff; color: #3730a3; padding: 3px 8px; border-radius: 9999px;">Quick Dial</span>
+        </div>
+        <div class="contacts-list" style="margin-top: 10px;">
+          <a href="tel:7305004032" class="contact-item" style="text-decoration: none; color: inherit;">
+            <strong>Chief Warden:</strong>
+            <span>7305004032</span>
+            <small style="display: block; font-size: 0.78rem; color: #64748b; margin-top: 2px;">Dr. Sumathi (Chief Warden)</small>
+          </a>
+          <a href="tel:8148850319" class="contact-item" style="text-decoration: none; color: inherit;">
+            <strong>Hostel Management:</strong>
+            <span>8148850319</span>
+            <small style="display: block; font-size: 0.78rem; color: #64748b; margin-top: 2px;">Central Administration</small>
+          </a>
+          <a href="tel:1357924680" class="contact-item" style="text-decoration: none; color: inherit;">
+            <strong>Electrician:</strong>
+            <span>1357924680</span>
+            <small style="display: block; font-size: 0.78rem; color: #64748b; margin-top: 2px;">Electrical Duty Staff</small>
+          </a>
+          <a href="tel:1234567890" class="contact-item" style="text-decoration: none; color: inherit;">
+            <strong>Plumber:</strong>
+            <span>1234567890</span>
+            <small style="display: block; font-size: 0.78rem; color: #64748b; margin-top: 2px;">Plumbing Maintenance</small>
+          </a>
+        </div>
+        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px dashed #fca5a5; font-size: 0.85rem; color: #475569; display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between;">
+          <span>👨‍⚕️ <strong>Doctor & Nurse:</strong> Campus Health Center (108)</span>
+          <span>🚒 <strong>Fire Emergency Team:</strong> Station Unit (101)</span>
+          <span>🛡️ <strong>Hostel Security & Bouncers:</strong> Quick Reaction Patrol (+91 94444 00100)</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

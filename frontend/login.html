@@ -73,7 +73,7 @@
       <form id="admin-login-form" style="display: none;">
         <div class="form-group">
           <label for="adminUsername" id="lbl-admin-user">Warden Email or Username <span class="required">*</span></label>
-          <input type="text" id="adminUsername" class="form-control" placeholder="Enter official warden email or username (e.g. warden@hostel.edu)" autocomplete="username" required />
+          <input type="text" id="adminUsername" class="form-control" placeholder="Enter official warden email or username (e.g. admin@hostel.edu)" autocomplete="username" required />
         </div>
 
         <div class="form-group">
@@ -106,12 +106,12 @@
       <!-- Development & Sandbox Credentials Reference (Zero personal email exposed) -->
       <div style="margin-top: 18px; padding: 12px 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.82rem; color: #475569; line-height: 1.6;">
         <div style="font-weight: 700; color: #1e293b; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-          <span>ℹ️</span> <strong>Development &amp; Sandbox Test Reference:</strong>
+          <span>ℹ️</span> <strong>Local Development &amp; Sandbox Test Reference:</strong>
         </div>
-        <div>• <strong>Student Portal (Sandbox):</strong> <code>student@hostel.edu</code> or <code>STU101</code> / Password: <code>password123</code></div>
-        <div>• <strong>Warden Portal (Sandbox):</strong> <code>warden@hostel.edu</code> / Password: <code>password123</code></div>
+        <div>• <strong>Student Portal (Local Sandbox only):</strong> <code>STU101</code> / Password: <code>password123</code></div>
+        <div>• <strong>Warden Portal (Local Sandbox only):</strong> <code>admin@hostel.edu</code> / Password: <code>admin123</code></div>
         <div style="margin-top: 6px; font-size: 0.77rem; color: #64748b;">
-          In production, default passwords are strictly disabled. Warden accounts are provisioned server-side via environment variables, and new resident students register through the verified portal link above.
+          These demo accounts work only with the local development database. Hosted deployments use the warden account configured by the administrator; register a student account to use the hosted student portal.
         </div>
       </div>
     </div>

@@ -87,13 +87,30 @@ npm start
 
 ---
 
-## 🔗 Step 5: Connecting Frontend to Backend
+## Connecting the Frontend to the Spring Boot Backend
 
-In `frontend/js/api.js`, the default API base URL is set to `/api`. If you run the frontend independently on a different port (e.g. `http://127.0.0.1:5500`), change line 8 of `frontend/js/api.js`:
-```javascript
-const API_BASE_URL = "http://localhost:8080/api";
-```
-All form submissions will automatically use `fetch()` to call the Spring Boot REST API endpoints.
+The existing HTML, CSS, and JavaScript pages in `frontend/` are included in the Spring Boot application when Maven builds the backend. This keeps the current frontend and its design unchanged, while serving its pages and `/api` requests from the same origin.
+
+1. Start MySQL. Set `SPRING_DATASOURCE_PASSWORD` in your environment, or keep your local-only password in `backend/application-local.properties` (this file is ignored by Git).
+2. From the `backend` directory, run:
+   ```bash
+   mvn spring-boot:run
+   ```
+3. Open **http://localhost:8080/** (or **http://localhost:8080/login.html**) in your browser. Do not use VS Code Live Server for this integrated setup; opening the frontend from a separate server makes the relative `/api` URL point at the wrong server.
+
+The frontend uses `/api` and the Spring Boot server exposes the student, warden, emergency, complaint, and dashboard endpoints. Demo warden credentials, when the database is first initialized, are `admin@hostel.edu` / `admin123`; demo student credentials are `STU101` / `password123` and `STU102` / `password123`.
+
+## Deploying a Demo with Railway
+
+The root `Dockerfile` builds the Spring Boot application and packages the existing `frontend/` pages. Railway can run this container alongside a Railway MySQL service.
+
+1. Push the latest project files, including the root `Dockerfile`, `.dockerignore`, the backend production configuration, and the `frontend/` and `backend/` changes, to the GitHub repository connected to Railway. Do not upload `.env` files or passwords.
+2. In Railway, create a project from that GitHub repository and add a MySQL service.
+3. In the application service, set `SPRING_PROFILES_ACTIVE=production` and add references to the MySQL service variables `MYSQLHOST`, `MYSQLPORT`, `MYSQLDATABASE`, `MYSQLUSER`, and `MYSQLPASSWORD`. The production profile reads these values from the environment.
+4. Set `HOSTEL_ADMIN_USERNAME`, `HOSTEL_ADMIN_PASSWORD` (choose a new, unique password), and optionally `HOSTEL_ADMIN_NAME` in the application service variables. Do not use the local demo password on a public deployment.
+5. Generate a public domain for the application service and open that URL. Railway may require a paid plan or usage charges; review its current pricing before deploying.
+
+The production profile does not seed demo student/emergency/complaint records. Use synthetic test data only: this project is a student demo and its API is not hardened for real student personal or emergency data. A public URL is accessible on the internet.
 
 ---
 

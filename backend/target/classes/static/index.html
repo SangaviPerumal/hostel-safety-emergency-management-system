@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostel Emergency & Safety Management System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar" id="main-nav">
+    <a href="index.html" class="navbar-brand" id="nav-brand-logo">
+      <span class="siren-icon">🚨</span>
+      <span>Hostel Emergency & Safety</span>
+    </a>
+    <ul class="nav-links" id="nav-menu-links">
+      <li><a href="index.html" class="active" id="nav-home">Home</a></li>
+      <li><a href="emergency.html" class="nav-emergency-btn" id="nav-emergency">🚨 Emergency</a></li>
+      <li><a href="complaint.html" id="nav-complaint">🛡️ Safety Complaint</a></li>
+      <li><a href="student-dashboard.html" id="nav-student-dashboard">👤 Student Dashboard</a></li>
+      <li><a href="login.html" id="nav-login">🔑 Login</a></li>
+      <li><a href="admin-dashboard.html" id="nav-admin">⚙️ Admin/Warden</a></li>
+    </ul>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper" style="flex-direction: column; align-items: center;">
+    
+    <div class="home-hero">
+      <div style="font-size: 3rem; margin-bottom: 8px;">🚨</div>
+      <h1 style="color: #1e3a8a; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em;">
+        Hostel Emergency & Safety Management System
+      </h1>
+      <p style="color: #4b5563; font-size: 1.1rem; margin-top: 10px; line-height: 1.6;">
+        Immediate crisis response, safety maintenance workflows, and warden control room for resident students.
+      </p>
+
+      <!-- Immediate Emergency SOS Hero Button -->
+      <div style="margin-top: 24px;">
+        <a href="emergency.html" class="btn btn-emergency" style="max-width: 420px; margin: 0 auto; font-size: 1.2rem; padding: 16px 28px; box-shadow: 0 10px 25px rgba(220, 38, 38, 0.35);">
+          <span>🚨</span> REPORT AN EMERGENCY (SOS)
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Action Navigation Cards (Redundant emergency card removed; top SOS hero button retained) -->
+    <div style="width: 100%; max-width: 1050px;">
+      <div class="home-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        
+        <!-- Safety Complaint Card -->
+        <a href="complaint.html" class="action-card">
+          <div class="action-icon">🛡️</div>
+          <div class="action-title">Safety Complaint</div>
+          <div class="action-desc">
+            Report broken door locks, water leaks, dark corridors, CCTV blindspots, or sanitary issues to maintenance.
+          </div>
+          <span class="btn btn-primary btn-sm" style="margin-top: 16px; width: 100%;">Submit Complaint</span>
+        </a>
+
+        <!-- Student Dashboard -->
+        <a href="student-dashboard.html" class="action-card">
+          <div class="action-icon">👤</div>
+          <div class="action-title">Student Dashboard</div>
+          <div class="action-desc">
+            Track real-time status of all submitted emergency reports and complaints (Pending, In Progress, Resolved).
+          </div>
+          <span class="btn btn-secondary btn-sm" style="margin-top: 16px; width: 100%;">View Student Status</span>
+        </a>
+
+        <!-- Admin Control Room -->
+        <a href="admin-dashboard.html" class="action-card">
+          <div class="action-icon">⚙️</div>
+          <div class="action-title">Warden Control Room</div>
+          <div class="action-desc">
+            Warden console with metrics, student directory, emergency dispatch management, and status updates.
+          </div>
+          <span class="btn btn-secondary btn-sm" style="margin-top: 16px; width: 100%;">Warden Login</span>
+        </a>
+
+      </div>
+
+      <!-- 24/7 Emergency Helplines & Key Personnel Box -->
+      <div class="emergency-contacts-strip">
+        <div class="emergency-contacts-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <span><span>📞</span> 24/7 Hostel Duty & Emergency Helplines (Click to Call)</span>
+          <span style="font-size: 0.8rem; background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 9999px; font-weight: 700;">Direct Speed Dial</span>
+        </div>
+        <div class="contacts-list" style="margin-top: 10px;">
+          <a href="tel:7305004032" class="contact-item" style="text-decoration: none; color: inherit;">
+            <strong>Hostel Warden:</strong>
+            <span>7305004032</span>
+            <small style="display: block; font-size: 0.78rem; color: #64748b; margin-top: 2px;">Dr. Sumathi (Chief Warden)</small>
+          </a>
+          <a href="tel:8148850319" class="contact-item" style="text-decoration: none; color: inherit;">
+            <strong>Hostel Management:</strong>
+            <span>8148850319</span>
+            <small style="display: block; font-size: 0.78rem; color: #64748b; margin-top: 2px;">Admin Office</small>
+          </a>
+          <a href="tel:1357924680" class="contact-item" style="text-decoration: none; color: inherit;">
+            <strong>Electrician:</strong>
+            <span>1357924680</span>
+            <small style="display: block; font-size: 0.78rem; color: #64748b; margin-top: 2px;">Electrical Maintenance</small>
+          </a>
+          <a href="tel:1234567890" class="contact-item" style="text-decoration: none; color: inherit;">
+            <strong>Plumber:</strong>
+            <span>1234567890</span>
+            <small style="display: block; font-size: 0.78rem; color: #64748b; margin-top: 2px;">Plumbing Maintenance</small>
+          </a>
+        </div>
+        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed #fca5a5; font-size: 0.85rem; color: #475569; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;">
+          <span>👨‍⚕️ <strong>Doctor & Nurse:</strong> Emergency Medical Health Unit (108)</span>
+          <span>🚒 <strong>Fire Emergency Team:</strong> Campus Fire Safety (101)</span>
+          <span>🛡️ <strong>Hostel Security & Bouncers:</strong> Main Gate Quick Response Patrol (+91 94444 00100)</span>
+        </div>
+      </div>
+
+      <!-- Alert Dispatch Routing Matrix Card (Clean titles without numbers in notification message) -->
+      <div class="form-card" style="max-width: 100%; margin-top: 24px; padding: 24px; border-left: 5px solid #2563eb;">
+        <h3 style="color: #1e3a8a; font-size: 1.15rem; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+          <span>📢</span> Automated Emergency & Safety Alert Routing Protocol
+        </h3>
+        <p style="color: #4b5563; font-size: 0.92rem; margin-bottom: 12px;">
+          When an emergency or safety complaint is submitted, immediate multi-channel alerts are routed to the designated response authorities:
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; font-size: 0.88rem;">
+          <div style="background: #fef2f2; border: 1px solid #fee2e2; border-radius: 8px; padding: 12px;">
+            <strong style="color: #dc2626;">🚨 Medical Emergencies</strong>
+            <p style="color: #7f1d1d; margin-top: 4px;">Chief Warden, Hostel Management, Doctor and Nurse</p>
+          </div>
+          <div style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 12px;">
+            <strong style="color: #d97706;">⚡ Electrical Emergencies</strong>
+            <p style="color: #92400e; margin-top: 4px;">Electrician, Chief Warden and Hostel Management</p>
+          </div>
+          <div style="background: #fff1f2; border: 1px solid #ffe4e6; border-radius: 8px; padding: 12px;">
+            <strong style="color: #e11d48;">🔥 Fire Emergencies</strong>
+            <p style="color: #9f1239; margin-top: 4px;">Hostel Warden, Hostel Management and Fire Emergency Team</p>
+          </div>
+          <div style="background: #eff6ff; border: 1px solid #dbeafe; border-radius: 8px; padding: 12px;">
+            <strong style="color: #2563eb;">🛡️ Security Emergencies</strong>
+            <p style="color: #1e40af; margin-top: 4px;">Hostel Warden, Hostel Management, Hostel Security and Bouncers</p>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
+            <strong style="color: #475569;">⚠️ Other Emergencies</strong>
+            <p style="color: #334155; margin-top: 4px;">Hostel Warden and Hostel Management</p>
+          </div>
+          <div style="background: #f0fdf4; border: 1px solid #dcfce7; border-radius: 8px; padding: 12px;">
+            <strong style="color: #16a34a;">📋 All Safety Complaints</strong>
+            <p style="color: #166534; margin-top: 4px;">Hostel Warden and Hostel Management</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full-Stack Architecture Guide Card -->
+      <div class="form-card" style="max-width: 100%; margin-top: 24px; padding: 24px;">
+        <h3 style="color: #1e3a8a; font-size: 1.25rem; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+          <span>☕</span> Full-Stack Java Spring Boot + MySQL + Pure HTML/CSS/JS Architecture
+        </h3>
+        <p style="color: #4b5563; font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
+          This application connects a clean, responsive HTML/CSS/Vanilla JavaScript frontend to a Spring Boot REST API backed by Spring Data JPA and MySQL.
+        </p>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 0.88rem; color: #334155; line-height: 1.5; overflow-x: auto;">
+          <strong>Frontend Flow:</strong> HTML Form (emergency.html) ➔ JavaScript (fetch) ➔ Spring Boot REST Controller ➔ Service ➔ JPA Repository ➔ MySQL (emergencies table)<br/><br/>
+          <strong>Core REST Endpoints:</strong><br/>
+          • POST /api/students/register (Register student)<br/>
+          • POST /api/students/login (Validate student credentials)<br/>
+          • POST /api/emergencies (Submit emergency with automated alert routing)<br/>
+          • GET  /api/emergencies (List all emergencies for Warden)<br/>
+          • PUT  /api/emergencies/{id}/status (Update status to In Progress / Resolved)<br/>
+          • POST /api/complaints (Submit safety complaint, status=Pending)<br/>
+          • GET  /api/complaints (List complaints)<br/>
+          • PUT  /api/complaints/{id}/status (Update complaint status)<br/>
+          • GET  /api/contacts (Emergency contacts directory)<br/>
+          • POST /api/admin/login (Admin / Warden authentication)
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="js/api.js"></script>
+</body>
+</html>

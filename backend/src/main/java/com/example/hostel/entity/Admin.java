@@ -2,6 +2,7 @@ package com.example.hostel.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Admin Entity representing Hostel Wardens and Security Officers
@@ -20,6 +21,7 @@ public class Admin {
     private String username;
 
     @NotBlank(message = "Password is required")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password", nullable = false)
     private String password;
 
